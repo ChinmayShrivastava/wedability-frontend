@@ -100,10 +100,10 @@ export default function Signup() {
               <div className="mt-2">
                 <TextField
                   required
-                  id="password"
+                  id="confirm_password"
                   label="Confirm Password"
                   type="password"
-                  autoComplete="current-password"
+                  autoComplete="confirm-password"
                   variant="filled"
                   fullWidth
                   size="small"
