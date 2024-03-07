@@ -1,6 +1,7 @@
 import { createSlice , createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { API_URL } from '../../config'
+import { getCsrfToken } from '../../functions/Authentication/auth'
 
 export const fetchBudget = createAsyncThunk(
     'budget/fetchBudget',
@@ -23,7 +24,7 @@ export const fetchBudget = createAsyncThunk(
 export const createBudget = createAsyncThunk(
     'budget/createBudget',
     async (userData) => {
-        const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
+        const csrfToken = await getCsrfToken()
         const response = await axios.post(API_URL+'/budget/create-couple-budget/', {
             groom_name: userData.groom_name,
             bride_name: userData.bride_name,

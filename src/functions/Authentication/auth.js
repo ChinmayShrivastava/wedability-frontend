@@ -3,9 +3,15 @@ import { API_URL } from '../../config';
 
 // simple get request to get the csrf token, api = http://localhost:8000/api/get-csrf-token/
 export const getCsrfToken = async () => {
-    return await axios.get(`${API_URL}/api/get-csrf-token/`, {
+    const response = await axios.get(`${API_URL}/api/get-csrf-token/`, {
         withCredentials: true
     })
+    if (response.status === 200) {
+        return response.data.csrftoken
+    }
+    else {
+        return ''
+    }
 }
 
 // export const getCSRFToken = async () => {

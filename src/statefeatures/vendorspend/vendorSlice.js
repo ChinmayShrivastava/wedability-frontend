@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { API_URL } from '../../config'
+import { getCsrfToken } from '../../functions/Authentication/auth'
 
 export const fetchVendors = createAsyncThunk(
     'vendors/fetchVendors',
@@ -24,7 +25,7 @@ export const fetchVendors = createAsyncThunk(
 export const addVendorAPI = createAsyncThunk(
     'vendors/addVendorAPI',
     async (vendorData) => {
-        const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
+        const csrfToken = await getCsrfToken()
         const response = await axios.post(API_URL+'/vendors/add-vendor/', {
             name: vendorData.name,
             serviceorproduct: vendorData.serviceorproduct,
@@ -50,7 +51,7 @@ export const addVendorAPI = createAsyncThunk(
 export const updateVendorAPI = createAsyncThunk(
     'vendors/updateVendorAPI',
     async (vendorData) => {
-        const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
+        const csrfToken = await getCsrfToken()
         const response = await axios.post(API_URL+'/vendors/update-vendor/', {
             id: vendorData.id,
             name: vendorData.name,

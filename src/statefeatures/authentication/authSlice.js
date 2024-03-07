@@ -1,6 +1,7 @@
 import { createSlice , createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { API_URL } from '../../config'
+import { getCsrfToken } from '../../functions/Authentication/auth'
 
 export const authenticateUser = createAsyncThunk(
     'auth/authenticateUser',
@@ -23,7 +24,7 @@ export const authenticateUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async (userData) => {
-        const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
+        const csrfToken = await getCsrfToken()
         const response = await axios.post(API_URL+'/api/login/', {
             email: userData.email,
             password: userData.password
@@ -46,7 +47,7 @@ export const loginUser = createAsyncThunk(
 export const createUser = createAsyncThunk(
     'auth/createUser',
     async (userData) => {
-        const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
+        const csrfToken = await getCsrfToken()
         const response = await axios.post(API_URL+'/api/create-user/', {
             email: userData.email,
             password: userData.password,
