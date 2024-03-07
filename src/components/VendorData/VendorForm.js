@@ -13,10 +13,12 @@ export function VendorForm({ action }) {
 
     useEffect(() => {
         if (action === "update") {
+            console.log(vendorState.data[vendorState.selected_vendor_index])
             const vendordata = vendorState.data[vendorState.selected_vendor_index];
             dispatch(setInitStateToPayload(vendordata));
         }
-    }, [action, vendorState.data, vendorState.selected_vendor_index, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [action]);
 
     const handleVendorFormSubmit = (e) => {
         e.preventDefault();

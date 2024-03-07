@@ -1,17 +1,17 @@
 import { createSlice , createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { API_URL } from '../../config'
 
 export const authenticateUser = createAsyncThunk(
     'auth/authenticateUser',
     async () => {
-        const response = await axios.get('https://wedability-api-c278e4073094.herokuapp.com/api/authenticate', {
+        const response = await axios.get(API_URL+'/api/authenticate', {
             withCredentials: true
             }
         )
         const data = response.data
-        // if status is 200
-        if (response.status === 200) {
-            return data
+        if (data.message === "success") {
+            return data.data
         }
         else {
             throw new Error('User is not authenticated')
@@ -24,7 +24,7 @@ export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async (userData) => {
         const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
-        const response = await axios.post('https://wedability-api-c278e4073094.herokuapp.com/api/login/', {
+        const response = await axios.post(API_URL+'/api/login/', {
             email: userData.email,
             password: userData.password
         }, {
@@ -47,7 +47,7 @@ export const createUser = createAsyncThunk(
     'auth/createUser',
     async (userData) => {
         const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
-        const response = await axios.post('https://wedability-api-c278e4073094.herokuapp.com/api/create-user/', {
+        const response = await axios.post(API_URL+'/api/create-user/', {
             email: userData.email,
             password: userData.password,
             confirm_password: userData.confirm_password,
@@ -73,7 +73,7 @@ export const createUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
     'auth/logoutUser',
     async () => {
-        const response = await axios.get('https://wedability-api-c278e4073094.herokuapp.com/api/logout', {
+        const response = await axios.get(API_URL+'/api/logout', {
             withCredentials: true
         })
         if (response.status === 200) {
@@ -109,9 +109,14 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(authenticateUser.fulfilled, (state, action) => {
-            state.isAuthenticated = true
-            state.loading = false
-            state.user = action.payload.user
+            if (action.payload) {
+                state.isAuthenticated = true
+                state.loading = false
+                state.user = action.payload.user
+            }
+            else {
+                state.loading = false
+            }
         })
         builder.addCase(authenticateUser.pending, (state, action) => {
             state.loading = true
@@ -119,7 +124,6 @@ const authSlice = createSlice({
         builder.addCase(authenticateUser.rejected, (state, action) => {
             state.loading = false
             state.error = action.error
-            console.log(action.error)
         })
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isAuthenticated = true

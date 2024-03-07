@@ -1,8 +1,11 @@
 import axios from 'axios';
+import { API_URL } from '../../config';
 
 // simple get request to get the csrf token, api = http://localhost:8000/api/get-csrf-token/
 export const getCsrfToken = async () => {
-    return await axios.get('https://wedability-api-c278e4073094.herokuapp.com/api/get-csrf-token/');
+    return await axios.get(`${API_URL}/api/get-csrf-token/`, {
+        withCredentials: true
+    })
 }
 
 // export const getCSRFToken = async () => {

@@ -68,7 +68,7 @@ export default function VendorTable() {
                     }}
             }
             >
-                <VendorForm vendordata={vendorState.data[vendorState.selected_vendor_index]} action={"update"} />
+                <VendorForm action={"update"} />
             </Drawer>
             <Drawer
             anchor="right"

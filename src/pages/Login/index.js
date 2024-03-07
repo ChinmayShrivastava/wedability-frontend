@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useEffect , useState } from 'react';
-import { useSelector , useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { loginUser } from '../../statefeatures/authentication/authSlice';
 /*
   This example requires some changes to your config:
@@ -21,13 +21,6 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (auth.isAuthenticated) {
-      window.location.href = "/dashboard";
-    }
-  }, [auth]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -36,14 +29,6 @@ export default function Login() {
 
   return (
     <div className='h-full'>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
       <div className="flex h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -52,7 +37,7 @@ export default function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleLogin}>
             <div>
               <div className="mt-2">
                 <TextField
@@ -93,7 +78,6 @@ export default function Login() {
                 variant="contained"
                 color="primary"
                 fullWidth
-                onClick={handleLogin}
               >
                 Log in
               </Button>
