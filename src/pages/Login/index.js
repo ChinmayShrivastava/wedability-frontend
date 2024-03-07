@@ -29,6 +29,11 @@ export default function Login() {
     }
   }, [auth]);
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(loginUser({ email, password }));
+  }
+
   return (
     <div className='h-full'>
       {/*
@@ -88,7 +93,7 @@ export default function Login() {
                 variant="contained"
                 color="primary"
                 fullWidth
-                onClick={() => dispatch(loginUser({ email, password }))}
+                onClick={handleLogin}
               >
                 Log in
               </Button>
