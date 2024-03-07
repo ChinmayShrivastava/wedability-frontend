@@ -5,7 +5,7 @@ import axios from 'axios'
 export const fetchVendors = createAsyncThunk(
     'vendors/fetchVendors',
     async () => {
-        const response = await axios.get('http://localhost:8000/vendors/get-vendors/', {
+        const response = await axios.get('https://wedability-api-c278e4073094.herokuapp.com/vendors/get-vendors/', {
             withCredentials: true
             }
         )
@@ -24,7 +24,7 @@ export const addVendorAPI = createAsyncThunk(
     'vendors/addVendorAPI',
     async (vendorData) => {
         const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
-        const response = await axios.post('http://localhost:8000/vendors/add-vendor/', {
+        const response = await axios.post('https://wedability-api-c278e4073094.herokuapp.com/vendors/add-vendor/', {
             name: vendorData.name,
             serviceorproduct: vendorData.serviceorproduct,
             cost: vendorData.cost,
@@ -50,7 +50,7 @@ export const updateVendorAPI = createAsyncThunk(
     'vendors/updateVendorAPI',
     async (vendorData) => {
         const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
-        const response = await axios.post('http://localhost:8000/vendors/update-vendor/', {
+        const response = await axios.post('https://wedability-api-c278e4073094.herokuapp.com/vendors/update-vendor/', {
             id: vendorData.id,
             name: vendorData.name,
             serviceorproduct: vendorData.serviceorproduct,

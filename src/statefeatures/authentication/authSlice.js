@@ -4,7 +4,7 @@ import axios from 'axios'
 export const authenticateUser = createAsyncThunk(
     'auth/authenticateUser',
     async () => {
-        const response = await axios.get('http://localhost:8000/api/authenticate', {
+        const response = await axios.get('https://wedability-api-c278e4073094.herokuapp.com/api/authenticate', {
             withCredentials: true
             }
         )
@@ -24,7 +24,7 @@ export const loginUser = createAsyncThunk(
     'auth/loginUser',
     async (userData) => {
         const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
-        const response = await axios.post('http://localhost:8000/api/login/', {
+        const response = await axios.post('https://wedability-api-c278e4073094.herokuapp.com/api/login/', {
             email: userData.email,
             password: userData.password
         }, {
@@ -47,7 +47,7 @@ export const createUser = createAsyncThunk(
     'auth/createUser',
     async (userData) => {
         const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
-        const response = await axios.post('http://localhost:8000/api/create-user/', {
+        const response = await axios.post('https://wedability-api-c278e4073094.herokuapp.com/api/create-user/', {
             email: userData.email,
             password: userData.password,
             confirm_password: userData.confirm_password,
@@ -73,7 +73,7 @@ export const createUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
     'auth/logoutUser',
     async () => {
-        const response = await axios.get('http://localhost:8000/api/logout', {
+        const response = await axios.get('https://wedability-api-c278e4073094.herokuapp.com/api/logout', {
             withCredentials: true
         })
         if (response.status === 200) {

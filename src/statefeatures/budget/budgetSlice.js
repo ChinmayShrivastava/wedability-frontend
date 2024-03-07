@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchBudget = createAsyncThunk(
     'budget/fetchBudget',
     async () => {
-        const response = await axios.get('http://localhost:8000/budget/get-couple-budget/', {
+        const response = await axios.get('https://wedability-api-c278e4073094.herokuapp.com/budget/get-couple-budget/', {
             withCredentials: true
             }
         )
@@ -23,7 +23,7 @@ export const createBudget = createAsyncThunk(
     'budget/createBudget',
     async (userData) => {
         const csrfToken = document.cookie.match(/csrftoken=([\w-]+)/)[1];
-        const response = await axios.post('http://localhost:8000/budget/create-couple-budget/', {
+        const response = await axios.post('https://wedability-api-c278e4073094.herokuapp.com/budget/create-couple-budget/', {
             groom_name: userData.groom_name,
             bride_name: userData.bride_name,
             groom_contribution: userData.groom_budget,
