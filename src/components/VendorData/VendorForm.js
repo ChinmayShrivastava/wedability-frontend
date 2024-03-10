@@ -17,6 +17,9 @@ export function VendorForm({ action }) {
             const vendordata = vendorState.data[vendorState.selected_vendor_index];
             dispatch(setInitStateToPayload(vendordata));
         }
+        else {
+            dispatch(resetVendorForm());
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [action]);
 
