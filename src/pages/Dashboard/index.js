@@ -22,11 +22,11 @@ export default function Dashboard() {
   }
   else {
   return (
-    <div className="flex items-center justify-center w-full h-full">
+    <div className="flex items-center justify-center w-full h-full overflow-scroll md:overflow-hidden">
       <div className="flex flex-row justify-center w-full items-center">
-        <div className="flex flex-col w-3/5 h-full">
-          <div className=" flex flex-row justify-between text-3xl w-full mt-4">
-            <div className="w-[49%]">
+        <div className="flex flex-col w-full h-full px-4 xl:px-32">
+          <div className="flex flex-col sm:flex-row justify-between text-3xl w-full mt-4">
+            <div className="sm:w-[49%] mt-4 sm:mt-0">
               <CoupleFinanceDisplay
                 title="Total Budget"
                 name1={combined_budget.data.bride_name}
@@ -35,7 +35,7 @@ export default function Dashboard() {
                 amount2={combined_budget.data.groom_budget}
               />
             </div>
-            <div className="w-[49%]">
+            <div className="sm:w-[49%] mt-4 sm:mt-0">
               <CoupleFinanceDisplay
                 title="Total Spent"
                 name1={combined_budget.data.bride_name}
@@ -45,7 +45,7 @@ export default function Dashboard() {
               />
             </div>
           </div>
-          <div className="text-3xl w-full mt-4">
+          <div className="text-3xl w-full my-4">
               <VendorTable />
           </div>
         </div>

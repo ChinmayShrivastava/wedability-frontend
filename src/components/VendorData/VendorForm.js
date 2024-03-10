@@ -48,6 +48,16 @@ export function VendorForm({ action }) {
 
     return (
         <div className="flex flex-row justify-center items-center w-full h-full m-auto">
+        {/* add an x to close */}
+        <div className="absolute top-0 right-0 m-4 cursor-pointer md:hidden" onClick={() => {
+            if (action === "update") { dispatch(closeVendorUpdate()); }
+            else { dispatch(closeVendorAdd()); }
+        }
+        }>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="black">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </div>
             <div className="flex flex-row justify start bg-[#FFEFF2] w-full h-full rounded-lg items-center justify-center">
                 <form className='flex flex-col w-4/5' onSubmit={handleVendorFormSubmit}>
                     <div className='my-2'>

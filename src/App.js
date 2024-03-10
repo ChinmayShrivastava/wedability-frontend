@@ -9,9 +9,9 @@ import Authentication from './components/Wrappers/authentication';
 
 function App() {
   return (
-    <div className='flex flex-row h-screen bg-[#FFEFF2]'>
+    <div className='flex flex-col md:flex-row md:h-screen bg-[#FFEFF2]'>
       <Sidenav />
-      <div className='h-full w-full'>
+      <div className='h-full w-full overflow-scroll'>
         <Authentication>
           <Routes>
             <Route path="/" element={<HomePage />} />

@@ -26,7 +26,7 @@ export function SpendTracker({data}) {
 
 export function VendorRow({vendordata}) {
     return (
-        <div className="flex flex-row w-full justify-between my-1 hover:bg-[#FFEFF2] p-4 rounded-lg cursor-pointer">
+        <div className="flex flex-row w-full justify-between my-1 md:hover:bg-[#FFEFF2] md:p-4 rounded-lg cursor-pointer">
             <div className="flex flex-row justify-start items-center">
                 <div className="flex flex-col">
                     <div className="text-[0.6em] font-bold">
@@ -57,16 +57,14 @@ export default function VendorTable() {
     }, [vendorState.data, dispatch]);
 
     return (
-        <div className="flex flex-col justify-between w-full min-h-[30px] h-full bg-white py-8 px-16 rounded-lg">
+        <div className="flex flex-col justify-between w-full min-h-[30px] h-full bg-white py-8 px-8 md:px-16 rounded-lg">
             <Drawer
             anchor="right"
             open={vendorState.vendor_update_is_open}
             onClose={() => dispatch(closeVendorUpdate())}
-            PaperProps={
-                {style: {
-                    width: "500px",
-                    }}
-            }
+            PaperProps={{
+                className: "w-full md:w-[500px]"
+            }}
             >
                 <VendorForm action={"update"} />
             </Drawer>
@@ -74,19 +72,17 @@ export default function VendorTable() {
             anchor="right"
             open={vendorState.vendor_add_is_open}
             onClose={() => dispatch(closeVendorAdd())}
-            PaperProps={
-                {style: {
-                    width: "500px",
-                    }}
-            }
+            PaperProps={{
+                className: "w-full md:w-[500px]"
+            }}
             >
                 <VendorForm action={"add"} />
             </Drawer>
             <div className="flex flex-row w-full justify-between my-4">
-                <div className="font-bold text-2xl">
+                <div className="md:font-bold text-2xl">
                     Vendor Name
                 </div>
-                <div className="font-bold text-2xl">
+                <div className="md:font-bold text-2xl">
                     Spend Status
                 </div>
             </div>
@@ -104,11 +100,11 @@ export default function VendorTable() {
                     );
 
                 })}
-            </div>
-            <div className="text-lg text-gray-300 hover:text-gray-500 w-full cursor-pointer border-[2px] border-dashed border-gray-300 hover:border-gray-500 my-2 py-2 rounded-sm text-center"
-            onClick={() => dispatch(openVendorAdd())}
-            >
-                + add vendor
+                <div className="text-lg text-gray-300 hover:text-gray-500 w-full cursor-pointer border-[2px] border-dashed border-gray-300 hover:border-gray-500 my-2 py-2 rounded-sm text-center"
+                onClick={() => dispatch(openVendorAdd())}
+                >
+                    + add vendor
+                </div>
             </div>
         </div>
     );
