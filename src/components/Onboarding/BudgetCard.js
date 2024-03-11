@@ -19,7 +19,7 @@ export const BudgetCard = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className='flex flex-row justify start bg-[#FFEFF2] w-[25%] h-3/5 rounded-lg items-center justify-center'>
+            className='flex flex-row justify start bg-[#FFEFF2] w-full md:w-[50%] max-w-[400px] h-3/5 rounded-lg items-center justify-center'>
                 <form onSubmit={handleBudgetSubmit} className='flex flex-col w-4/5'>
                     <div className='my-2'>
                         <TextField
