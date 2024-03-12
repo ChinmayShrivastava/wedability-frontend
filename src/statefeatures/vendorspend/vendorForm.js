@@ -8,7 +8,9 @@ export const vendorformSlice = createSlice({
         serviceorproduct: "",
         cost: 0,
         bride_contribution: 0,
-        groom_contribution: 0
+        groom_contribution: 0,
+        email: "",
+        phone: ""
     },
     reducers: {
         setVendorId: (state, action) => {
@@ -29,6 +31,12 @@ export const vendorformSlice = createSlice({
         setGroomContribution: (state, action) => {
             state.groom_contribution = action.payload
         },
+        setVendorEmail: (state, action) => {
+            state.email = action.payload
+        },
+        setVendorPhone: (state, action) => {
+            state.phone = action.payload
+        },
         resetVendorForm: (state) => {
             state.id = null;
             state.name = "";
@@ -36,20 +44,34 @@ export const vendorformSlice = createSlice({
             state.cost = 0;
             state.bride_contribution = 0;
             state.groom_contribution = 0;
+            state.email = "";
+            state.phone = "";
         },
         setInitStateToPayload: (state, action) => {
-            console.log(action.payload);
             state.id = action.payload.id;
             state.name = action.payload.name;
             state.serviceorproduct = action.payload.serviceorproduct;
             state.cost = action.payload.cost;
             state.bride_contribution = action.payload.bride_contribution;
             state.groom_contribution = action.payload.groom_contribution;
+            state.email = action.payload.email;
+            state.phone = action.payload.phone;
         }
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { setVendorId, setVendorName, setServiceOrProduct, setCost, setBrideContribution, setGroomContribution, resetVendorForm, setInitStateToPayload } = vendorformSlice.actions
+export const { 
+setVendorId, 
+setVendorName, 
+setServiceOrProduct, 
+setCost, 
+setBrideContribution, 
+setGroomContribution, 
+resetVendorForm, 
+setInitStateToPayload,
+setVendorEmail,
+setVendorPhone
+} = vendorformSlice.actions
 
 export default vendorformSlice.reducer

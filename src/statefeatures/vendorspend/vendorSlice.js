@@ -32,6 +32,8 @@ export const addVendorAPI = createAsyncThunk(
             cost: vendorData.cost,
             bride_contribution: vendorData.bride_contribution,
             groom_contribution: vendorData.groom_contribution,
+            email: vendorData.email,
+            phone: vendorData.phone
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -59,6 +61,8 @@ export const updateVendorAPI = createAsyncThunk(
             cost: vendorData.cost,
             bride_contribution: vendorData.bride_contribution,
             groom_contribution: vendorData.groom_contribution,
+            email: vendorData.email,
+            phone: vendorData.phone
         }, {
             headers: {
                 'Content-Type': 'application/json',

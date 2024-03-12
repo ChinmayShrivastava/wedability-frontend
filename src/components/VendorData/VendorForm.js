@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import { TextField } from '@mui/material';
 import { useSelector , useDispatch } from 'react-redux';
 import { addVendorAPI , updateVendorAPI , closeVendorAdd , closeVendorUpdate } from "../../statefeatures/vendorspend/vendorSlice";
-import { setVendorName , setBrideContribution , setCost , setGroomContribution , setServiceOrProduct , resetVendorForm , setInitStateToPayload } from "../../statefeatures/vendorspend/vendorForm";
+import { setVendorName , setBrideContribution , setCost , setGroomContribution , setServiceOrProduct , resetVendorForm , setInitStateToPayload , setVendorEmail , setVendorPhone } from "../../statefeatures/vendorspend/vendorForm";
 import { useEffect } from "react";
 
 export function VendorForm({ action }) {
@@ -32,7 +32,9 @@ export function VendorForm({ action }) {
                 serviceorproduct: vendorformState.serviceorproduct,
                 cost: vendorformState.cost,
                 bride_contribution: vendorformState.bride_contribution,
-                groom_contribution: vendorformState.groom_contribution
+                groom_contribution: vendorformState.groom_contribution,
+                email: vendorformState.email,
+                phone: vendorformState.phone
             }));
             dispatch(closeVendorUpdate());
         }
@@ -42,7 +44,9 @@ export function VendorForm({ action }) {
                 serviceorproduct: vendorformState.serviceorproduct,
                 cost: vendorformState.cost,
                 bride_contribution: vendorformState.bride_contribution,
-                groom_contribution: vendorformState.groom_contribution
+                groom_contribution: vendorformState.groom_contribution,
+                email: vendorformState.email,
+                phone: vendorformState.phone
             }));
             dispatch(closeVendorAdd());
         }
@@ -128,6 +132,32 @@ export function VendorForm({ action }) {
                         size="small"
                         value={vendorformState.groom_contribution}
                         onChange={(e) => dispatch(setGroomContribution(e.target.value))}
+                        />
+                    </div>
+                    <div className='my-2'>
+                        <TextField
+                        id="vendor_email"
+                        label="Vendor's Email"
+                        type="email"
+                        autoComplete="vendor's email"
+                        variant="filled"
+                        fullWidth
+                        size="small"
+                        value={vendorformState.email}
+                        onChange={(e) => dispatch(setVendorEmail(e.target.value))}
+                        />
+                    </div>
+                    <div className='my-2'>
+                        <TextField
+                        id="vendor_phone"
+                        label="Vendor's Phone"
+                        type="tel"
+                        autoComplete="vendor's phone"
+                        variant="filled"
+                        fullWidth
+                        size="small"
+                        value={vendorformState.phone}
+                        onChange={(e) => dispatch(setVendorPhone(e.target.value))}
                         />
                     </div>
                     <div className='my-2'>

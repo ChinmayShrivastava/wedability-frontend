@@ -46,6 +46,29 @@ export const createBudget = createAsyncThunk(
     }
 )
 
+export const updateBudget = createAsyncThunk(
+    'budget/updateBudget',
+    async (userData) => {
+        const csrfToken = await getCsrfToken()
+        const response = await axios.post(API_URL+'/budget/update-couple-budget/', {
+            groom_contribution: userData.groom_contribution,
+            bride_contribution: userData.bride_contribution,
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            withCredentials: true
+        })
+        if (response.status === 200) {
+            return response.data
+        }
+        else {
+            throw new Error('Something went wrong')
+        }
+    }
+)
+
 const budgetSlice = createSlice({
     name: 'budget',
     initialState: {
@@ -59,6 +82,7 @@ const budgetSlice = createSlice({
         },
         doesnt_exist: false,
         loading: true,
+        isOpen: false
     },
     reducers: {
         setBudget: (state, action) => {
@@ -96,6 +120,12 @@ const budgetSlice = createSlice({
             }
             state.data.bride_spend = bride_spend
             state.data.groom_spend = groom_spend
+        },
+        closeBudgetDrawer: (state) => {
+            state.isOpen = false
+        },
+        openBudgetDrawer: (state) => {
+            state.isOpen = true
         }
     },
     extraReducers: (builder) => {
@@ -133,8 +163,35 @@ const budgetSlice = createSlice({
         builder.addCase(createBudget.rejected, (state, action) => {
             state.loading = false
         })
+        builder.addCase(updateBudget.fulfilled, (state, action) => {
+            // budget and send are float, so we need to convert them to int
+            action.payload.bride_budget = parseInt(action.payload.bride_budget)
+            action.payload.groom_budget = parseInt(action.payload.groom_budget)
+            action.payload.bride_spend = parseInt(action.payload.bride_spend)
+            action.payload.groom_spend = parseInt(action.payload.groom_spend)
+            state.data = action.payload
+            state.loading = false
+            state.doesnt_exist = false
+        })
+        builder.addCase(updateBudget.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(updateBudget.rejected, (state, action) => {
+            state.loading = false
+        })
     }
 })
 
-export const { setBudget, setSpend, setBrideName, setGroomName, setBrideBudget, setGroomBudget, setBrideSpend, setGroomSpend, updateSpend } = budgetSlice.actions
+export const { setBudget, 
+setSpend, 
+setBrideName, 
+setGroomName, 
+setBrideBudget, 
+setGroomBudget, 
+setBrideSpend, 
+setGroomSpend, 
+updateSpend,
+closeBudgetDrawer,
+openBudgetDrawer
+} = budgetSlice.actions
 export default budgetSlice.reducer

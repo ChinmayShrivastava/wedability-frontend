@@ -4,6 +4,7 @@ import vendorReducer from '../statefeatures/vendorspend/vendorSlice';
 import authReducer from '../statefeatures/authentication/authSlice';
 import vendorformReducer from '../statefeatures/vendorspend/vendorForm';
 import sidebarReducer from '../statefeatures/Navigation/sidebar';
+import budgetformReducer from '../statefeatures/budget/budgetForm';
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     auth: authReducer,
     vendorform: vendorformReducer,
     sidebar: sidebarReducer,
+    budgetform: budgetformReducer
   },
 })
