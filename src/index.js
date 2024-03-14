@@ -12,7 +12,9 @@ root.render(
   // <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <div className='h-screen w-full bg-[#FFEFF2]'>
+          <App />
+        </div>
       </Provider>
     </BrowserRouter>
   // </React.StrictMode>

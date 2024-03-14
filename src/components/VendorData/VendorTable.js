@@ -78,6 +78,14 @@ export default function VendorTable() {
             >
                 <VendorForm action={"add"} />
             </Drawer>
+            {/* add a add vendor button */}
+            <div className="flex flex-row justify-end">
+                <div className="text-sm text-gray-300 hover:text-gray-500 cursor-pointer border-[2px] border-dashed border-gray-300 hover:border-gray-500 my-2 p-2 rounded-lg text-center"
+                onClick={() => dispatch(openVendorAdd())}
+                >
+                    + add vendor
+                </div>
+            </div>
             <div className="flex flex-row w-full justify-between my-4">
                 <div className="md:font-bold text-2xl">
                     Vendor Name
@@ -100,11 +108,11 @@ export default function VendorTable() {
                     );
 
                 })}
-                <div className="text-lg text-gray-300 hover:text-gray-500 w-full cursor-pointer border-[2px] border-dashed border-gray-300 hover:border-gray-500 my-2 py-2 rounded-sm text-center"
+                {/* <div className="text-lg text-gray-300 hover:text-gray-500 w-full cursor-pointer border-[2px] border-dashed border-gray-300 hover:border-gray-500 my-2 py-2 rounded-sm text-center"
                 onClick={() => dispatch(openVendorAdd())}
                 >
                     + add vendor
-                </div>
+                </div> */}
             </div>
         </div>
     );
